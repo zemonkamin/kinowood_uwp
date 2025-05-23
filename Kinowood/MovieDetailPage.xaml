@@ -1,0 +1,89 @@
+<Page
+    x:Class="Kinowood.MovieDetailPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Kinowood"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <ScrollViewer Grid.Row="0">
+            <StackPanel Margin="20">
+                <!-- Movie Info -->
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <!-- Poster -->
+                    <Image x:Name="PosterImage" 
+                           Width="200" 
+                           Height="300"
+                           Stretch="Uniform"
+                           HorizontalAlignment="Center"
+                           Margin="0,0,0,20"/>
+
+                    <!-- Movie Details -->
+                    <StackPanel Grid.Row="1">
+                        <TextBlock x:Name="TitleText" 
+                                 Style="{StaticResource HeaderTextBlockStyle}"
+                                 TextWrapping="Wrap"
+                                 TextAlignment="Center"/>
+                        <TextBlock x:Name="OriginalTitleText"
+                                 Style="{StaticResource SubtitleTextBlockStyle}"
+                                 Margin="0,10,0,0"
+                                 TextAlignment="Center"/>
+                        <TextBlock x:Name="YearText"
+                                 Style="{StaticResource BodyTextBlockStyle}"
+                                 Margin="0,10,0,0"
+                                 TextAlignment="Center"/>
+                        <TextBlock x:Name="DescriptionText"
+                                 Style="{StaticResource BodyTextBlockStyle}"
+                                 TextWrapping="Wrap"
+                                 Margin="0,20,0,0"/>
+                        <TextBlock x:Name="DirectorText"
+                                 Style="{StaticResource BodyTextBlockStyle}"
+                                 Margin="0,20,0,0"/>
+                        <TextBlock x:Name="WriterText"
+                                 Style="{StaticResource BodyTextBlockStyle}"
+                                 Margin="0,10,0,0"/>
+                        <TextBlock x:Name="ActorsText"
+                                 Style="{StaticResource BodyTextBlockStyle}"
+                                 TextWrapping="Wrap"
+                                 Margin="0,10,0,0"/>
+                        <TextBlock x:Name="GenresText"
+                                 Style="{StaticResource BodyTextBlockStyle}"
+                                 Margin="0,10,0,0"/>
+                        <TextBlock x:Name="DurationText"
+                                 Style="{StaticResource BodyTextBlockStyle}"
+                                 Margin="0,10,0,0"/>
+                    </StackPanel>
+                </Grid>
+
+                <!-- Video Player -->
+                <StackPanel Margin="0,20,0,0">
+                    <MediaElement x:Name="VideoPlayer"
+                                Width="300"
+                                Height="150"
+                                HorizontalAlignment="Center"
+                                AutoPlay="False"
+                                AreTransportControlsEnabled="True"
+                                DoubleTapped="VideoPlayer_DoubleTapped"/>
+
+                    <ComboBox x:Name="QualityComboBox"
+                             Margin="0,10,0,0"
+                             HorizontalAlignment="Center"
+                             Width="300"
+                             SelectionChanged="QualityComboBox_SelectionChanged"/>
+                </StackPanel>
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</Page> 

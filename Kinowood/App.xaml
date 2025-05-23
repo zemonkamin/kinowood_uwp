@@ -1,0 +1,25 @@
+﻿<Application
+    x:Class="Kinowood.App"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Kinowood"
+    RequestedTheme="Dark">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.ThemeDictionaries>
+                <ResourceDictionary x:Key="Light">
+                    <SolidColorBrush x:Key="ApplicationPageBackgroundThemeBrush" Color="#FFFFFF"/>
+                    <SolidColorBrush x:Key="SystemControlForegroundBaseHighBrush" Color="#000000"/>
+                    <SolidColorBrush x:Key="SystemControlForegroundBaseMediumBrush" Color="#666666"/>
+                </ResourceDictionary>
+                <ResourceDictionary x:Key="Dark">
+                    <SolidColorBrush x:Key="ApplicationPageBackgroundThemeBrush" Color="#000000"/>
+                    <SolidColorBrush x:Key="SystemControlBackgroundAltHighBrush" Color="#1A1A1A"/>
+                    <SolidColorBrush x:Key="SystemControlBackgroundBaseLowBrush" Color="#2D2D2D"/>
+                    <SolidColorBrush x:Key="SystemControlForegroundBaseHighBrush" Color="#FFFFFF"/>
+                    <SolidColorBrush x:Key="SystemControlForegroundBaseMediumBrush" Color="#999999"/>
+                </ResourceDictionary>
+            </ResourceDictionary.ThemeDictionaries>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

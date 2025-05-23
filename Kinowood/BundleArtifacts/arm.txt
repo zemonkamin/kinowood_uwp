@@ -1,0 +1,2 @@
+MainPackage=E:\cods\uwp\Kinowood\Kinowood\bin\ARM\Release\Kinowood_1.0.3.0_ARM.appx
+SymbolPackage=E:\cods\uwp\Kinowood\Kinowood\AppPackages\Kinowood_1.0.3.0_Test\Kinowood_1.0.3.0_ARM.appxsym

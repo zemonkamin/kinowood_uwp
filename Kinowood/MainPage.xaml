@@ -1,0 +1,139 @@
+﻿<Page
+    x:Class="Kinowood.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Kinowood"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Logo -->
+        <Image x:Name="LogoImage"
+               Grid.Row="0"
+               Source="ms-appx:///Assets/logo.png" 
+               HorizontalAlignment="Center"
+               VerticalAlignment="Center"
+               Margin="0,20,0,0"
+               Height="100"/>
+
+        <!-- Search Box -->
+        <Grid x:Name="SearchGrid" Grid.Row="1" Margin="20,20,20,10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            
+            <TextBox x:Name="SearchBox" 
+                     PlaceholderText="Искать фильмы..."
+                     Grid.Column="0"
+                     Margin="0,0,10,0"
+                     Background="{ThemeResource SystemControlBackgroundAltHighBrush}"
+                     Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}"
+                     KeyDown="SearchBox_KeyDown"/>
+            
+            <Button x:Name="SearchButton"
+                    Grid.Column="1"
+                    Click="SearchButton_Click">
+                <Image Source="ms-appx:///Assets/search.png" Height="20" Width="20"/>
+            </Button>
+        </Grid>
+
+        <!-- Movies Grid -->
+        <GridView x:Name="MoviesGrid"
+                  Grid.Row="2"
+                  Margin="20,0,20,20"
+                  SelectionMode="None"
+                  ItemClick="MoviesGrid_ItemClick"
+                  HorizontalAlignment="Center">
+            <GridView.ItemTemplate>
+                <DataTemplate>
+                    <Grid Width="150" Margin="10" Tapped="MovieCard_Tapped">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+
+                        <Grid Grid.Row="0">
+                            <Border Background="{ThemeResource SystemControlBackgroundAltHighBrush}"
+                                    CornerRadius="4"
+                                    Padding="2">
+                                <Image Source="{Binding FullImagePath}"
+                                       Stretch="Uniform"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"
+                                       MaxWidth="150"
+                                       MaxHeight="225"
+                                       ImageFailed="Image_ImageFailed"
+                                       ImageOpened="Image_ImageOpened"/>
+                            </Border>
+                        </Grid>
+
+                        <StackPanel Grid.Row="1" Margin="0,10,0,0">
+                            <TextBlock Text="{Binding Title}"
+                                     TextWrapping="NoWrap"
+                                     TextTrimming="CharacterEllipsis"
+                                     MaxLines="1"
+                                     Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}"
+                                     Style="{StaticResource SubtitleTextBlockStyle}"/>
+                            <TextBlock Text="{Binding Year}"
+                                     Style="{StaticResource CaptionTextBlockStyle}"
+                                     Foreground="{ThemeResource SystemControlForegroundBaseMediumBrush}"/>
+                        </StackPanel>
+
+                        <!-- Hover effect -->
+                        <Border Grid.RowSpan="2" 
+                                Background="Transparent"
+                                BorderBrush="{ThemeResource SystemControlHighlightListAccentLowBrush}"
+                                BorderThickness="2"
+                                CornerRadius="4"
+                                Opacity="0">
+                            <Border.Resources>
+                                <Storyboard x:Name="HoverStoryboard">
+                                    <DoubleAnimation Storyboard.TargetName="HoverBorder"
+                                                   Storyboard.TargetProperty="Opacity"
+                                                   To="1" Duration="0:0:0.1"/>
+                                </Storyboard>
+                            </Border.Resources>
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="CommonStates">
+                                    <VisualState x:Name="Normal"/>
+                                    <VisualState x:Name="PointerOver">
+                                        <Storyboard>
+                                            <DoubleAnimation Storyboard.TargetName="HoverBorder"
+                                                           Storyboard.TargetProperty="Opacity"
+                                                           To="1" Duration="0:0:0.1"/>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Pressed">
+                                        <Storyboard>
+                                            <DoubleAnimation Storyboard.TargetName="HoverBorder"
+                                                           Storyboard.TargetProperty="Opacity"
+                                                           To="0.5" Duration="0:0:0.1"/>
+                                        </Storyboard>
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                        </Border>
+                    </Grid>
+                </DataTemplate>
+            </GridView.ItemTemplate>
+        </GridView>
+
+        <!-- Loading Indicator -->
+        <ProgressRing x:Name="LoadingIndicator"
+                      Grid.Row="2"
+                      Width="50"
+                      Height="50"
+                      IsActive="False"
+                      Foreground="{ThemeResource SystemControlForegroundBaseHighBrush}"
+                      HorizontalAlignment="Center"
+                      VerticalAlignment="Center"/>
+    </Grid>
+</Page>
